@@ -2593,7 +2593,13 @@ window.FlexDashboardComponents.push({
 
 <div id="dashboard-container">
 
-<div id="row-1" class="section level2" data-height="25">
+<style type="text/css">
+
+body {
+   font-size: 13px;
+}
+</style>
+<div id="row-1" class="section level2" data-height="20">
 <h2>Row 1</h2>
 <div id="section" class="section level3">
 <h3></h3>
@@ -2650,7 +2656,7 @@ window.FlexDashboardComponents.push({
 <div id="another-row" class="section level2" data-height="50">
 <h2>Another Row</h2>
 <div id="component-size-and-coverage-dynamics" class="section level3">
-<h3>Component Size and Coverage Dynamics</h3>
+<h3><strong>Component Size and Coverage Dynamics</strong></h3>
 <p><strong>Fig. 2: Quantiles of component coverage and size as reads are inserted.</strong> <img src="img/component_quantiles.png" style="width:100%"></img></p>
 <p>Here, our partitioning function favors mean tags counts between 5 and 10. The bottom decile is thus dominated by low-coverage, small components. Coverage in higher quantiles grows slowly, after an initial peak: the highest-coverage graph regions, comprising mostly low-complexity sequence and high-degree nodes, are consumed by the lump. Note the relatively linear growth of the largest components, compared to the stability of the smaller ones.</p>
 <p>Samples for both figures taken from the MMETSP project <span class="citation">(Keeling 2014, <span class="citation">Cohen, Alexander, and Brown (2017)</span>)</span>, SRR1300451.</p>
@@ -2664,13 +2670,13 @@ window.FlexDashboardComponents.push({
 </div>
 <div id="on-the-methods" class="section level5">
 <h5>On the Methods</h5>
-<p>Current work is progressing toward better partition scoring by harnessing the detailed information on local and global component-wise coverage that we gather. The current streaming partitioning implementation is both information-rich and fast, currently exceeding the speed of a decent network connection. Streaming partitioning (and by extension, assembly) could operate as a filter for receiving sequence data, delivery components (or transcripts) as they become available, or acting as a persistent service for applications like resequencing experiments.</p>
+<p>Current work is progressing toward better partition scoring by harnessing the detailed information on local and global component-wise coverage that we gather. The current streaming partitioning implementation is both information-rich and fast, exceeding the speed of a decent network connection. Streaming partitioning (and by extension, assembly) could operate as a filter for receiving sequence data, delivery components (or transcripts) as they become available, or acting as a persistent service for applications like resequencing experiments.</p>
 </div>
 </div>
 </div>
 <div id="row-3" class="section level2" data-height="30">
 <h2>Row 3</h2>
-<div id="humans-were-involved" class="section level3" data-width="300">
+<div id="humans-were-involved" class="section level3" data-width="400">
 <h3><strong>Humans Were Involved</strong></h3>
 <p><strong>Contact</strong></p>
 <ul>
@@ -2686,7 +2692,7 @@ window.FlexDashboardComponents.push({
   target="_blank"
 >https://github.com/camillescott</a></li>
 </ul>
-<p>Thanks to the DIB Lab.</p>
+<p>Thanks to the DIB Lab, the Python community, the MSU HPCC, and the various friends Camille has talked assembly graphs with.</p>
 <p><strong>And Software</strong></p>
 <p>These analyses are implemented in the <code>boink</code> package (<a href="https://github.com/camillescott/boink" class="uri">https://github.com/camillescott/boink</a>), which is built on the <code>khmer/oxli</code> package from the Lab for Data Intensive Biology (<a href="http://ivory.idyll.org/lab/" class="uri">http://ivory.idyll.org/lab/</a>) at UCD.</p>
 </div>
@@ -2731,7 +2737,12 @@ output:
     social: menu
 bibliography: ../references/references.bib
 ---
+<style type="text/css">
 
+body {
+   font-size: 13px;
+}
+</style>
 
 ```{r setup, include=FALSE}
 library("flexdashboard")
@@ -2747,10 +2758,7 @@ knitr::opts_chunk$set(
 ```
 
 
-
-
-
-## Row 1 {data-height=25}
+## Row 1 {data-height=20}
 
 ###
 
@@ -2811,7 +2819,7 @@ the "lump," is composed of low complexity sequence and high-degree nodes.
 
 ## Another Row {data-height=50}
 
-### Component Size and Coverage Dynamics
+### **Component Size and Coverage Dynamics**
 
 **Fig. 2: Quantiles of component coverage and size as reads are inserted.**
 <img src="img/component_quantiles.png" style="width:100%"></img>
@@ -2841,14 +2849,14 @@ capacity as well.
 
 Current work is progressing toward better partition scoring by harnessing the detailed  information on local
 and global component-wise coverage that we gather. The current streaming partitioning implementation is both
-information-rich and fast, currently exceeding the speed of a decent network connection. Streaming
+information-rich and fast, exceeding the speed of a decent network connection. Streaming
 partitioning (and by extension, assembly) could operate as a filter for receiving sequence data,
 delivery components (or transcripts) as they become available, or acting as a persistent service for applications
 like resequencing experiments.
 
 ## Row 3 {data-height=30}
 
-### **Humans Were Involved** {data-width=300}
+### **Humans Were Involved** {data-width=400}
 
 **Contact**
 
@@ -2865,7 +2873,8 @@ like resequencing experiments.
   target="_blank"
 >https://github.com/camillescott</a>
 
-Thanks to the DIB Lab.
+Thanks to the DIB Lab, the Python community, the MSU HPCC, and the various friends Camille has talked
+assembly graphs with.
 
 **And Software**
 
