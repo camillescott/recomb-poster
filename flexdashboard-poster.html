@@ -2593,7 +2593,7 @@ window.FlexDashboardComponents.push({
 
 <div id="dashboard-container">
 
-<div id="row-1" class="section level2" data-height="15">
+<div id="row-1" class="section level2" data-height="20">
 <h2>Row 1</h2>
 <div id="section" class="section level3">
 <h3></h3>
@@ -2607,7 +2607,7 @@ window.FlexDashboardComponents.push({
 </center>
 </td>
 <td rowspan="2">
-<img src="img/logo.png" style="width:128px"></img>
+<img src="img/inter-transcript-circular-repeat-logo.png" style="width:200px"></img>
 </td>
 </tr>
 <tr>
@@ -2625,7 +2625,7 @@ window.FlexDashboardComponents.push({
 <p><strong>Background:</strong> With sequencing experiments regularly reaching into the billions of fragments, assembly graphs have become a core feature of most extant assemblers. Traversals of these graphs yield images of the underlying sequence, and the assembled sequences that result are studied in downstream analyses. However, less studied are features of the assembly graph itself. Motivated by the observation that assembly graphs succinctly encode a universe of possible assemblies, we explore some fundamental features of assembly graphs from RNA-seq. Our work is guided by the question: how much sequence is needed to build a reliable and useful image of the underlying transcripts? Using a large body of RNA-seq experiments available through the Marine Microbial Eukaryotic Sequencing Project (MMETSP), we describe transcriptome assembly graphs though their component size and coverage distributions, and harness this information to present a model for streaming transcriptome assembly graph partitioning. This work moves us toward our goal of producing a fully streaming transcriptome assembler.</p>
 </div>
 </div>
-<div id="row-2" class="section level2" data-height="75">
+<div id="row-2" class="section level2" data-height="45">
 <h2>Row 2</h2>
 <div id="methods" class="section level3">
 <h3><strong>Methods</strong></h3>
@@ -2642,14 +2642,17 @@ window.FlexDashboardComponents.push({
 <div id="rna-seq-assembly-graphs-are-dominated-by-a-highly-connected-component" class="section level4">
 <h4>RNA-seq assembly graphs are dominated by a highly connected component</h4>
 <p>Early work showed that assembly graphs from RNA-seq data tend to become dominated by one highly connected component, even when error trimming and adapter removal is performed. This component, which we call the “lump,” is composed of low complexity sequence and high-degree nodes.</p>
-<p><strong>Fig. 1: Even the wisest cannot tell. For the mirror… shows many things…</strong> <img src="poster.png" alt="What will I see?" style="width:100%"></img></p>
+<p><strong>Fig. 1: “Lump” formation as reads are added to the graph.</strong> <img src="img/largest_component_size_paired_and_single.png" style="width:100%"></img></p>
 </div>
+</div>
+</div>
+<div id="another-row" class="section level2" data-height="45">
+<h2>Another Row</h2>
+<div id="with-a-section" class="section level3">
+<h3>With a Section</h3>
 <div id="assembly-graphs-stabilize-early" class="section level4">
 <h4>Assembly Graphs Stabilize Early</h4>
 <p><strong>Fig. 1: Stabilization of component number in a eukaryotic marine transcriptome</strong> <img src="img/components_v_reads_paired_and_single.png" style="width:100%"></img></p>
-</div>
-<div id="component-coverage-help-minimize-traversals" class="section level4">
-<h4>Component Coverage help minimize traversals</h4>
 </div>
 </div>
 <div id="discussion" class="section level3">
@@ -2659,6 +2662,9 @@ window.FlexDashboardComponents.push({
 </div>
 <p>Since there are so many tools that can be used to prepare posters, and not a single one satisfies my needs, I prepared this <em>other</em> tool to… nah it still is missing things.</p>
 <p><strong>Fig. 3: Some authoritative content</strong> <img src="img/standards.png" style="width:100%"></img></p>
+</div>
+<div id="and-more" class="section level3">
+<h3>And More?</h3>
 <div id="limitations" class="section level4">
 <h4>Limitations</h4>
 <p>Since the png file is generated as a snapshot of the html poster, several limitations should be considered:</p>
@@ -2667,49 +2673,40 @@ window.FlexDashboardComponents.push({
 <li>Larger formats require much more resources to render</li>
 <li>Complex posters can take longer to load, so you have to try different delays</li>
 <li>The preview shown in <code>poster/poster_frame.html</code> could be very different to the final rendered image</li>
-<li>“I can’t fit enough text/figures!”<br />
-↑ that one’s on you, nobody likes a crammed poster</li>
+<li>“I can’t fit enough text/figures!”<br /> ↑ that one’s on you, nobody likes a crammed poster</li>
 </ul>
 <hr>
 </div>
-<div id="contact-information" class="section level4">
-<h4>Contact information</h4>
-<p>Camille Scott<br />
-<a
+</div>
+</div>
+<div id="row-3" class="section level2" data-height="35">
+<h2>Row 3</h2>
+<div id="fig.-2-place-the-volcano-figure-where-you-please." class="section level3">
+<h3><strong>Fig. 2: Place the volcano figure where you please.</strong></h3>
+<!-- {data-width=50} -->
+<p><img src="img/volcano-plot-1.png" style="height:100%"></img></p>
+</div>
+<div id="humans-were-involved" class="section level3">
+<h3>Humans Were Involved</h3>
+<p><strong>Contact</strong></p>
+<p>Camille Scott<br /><a
   title="University of California Davis"
   href="mailto:cswel@ucdavis.edu"
   target="_top"
->cswel@ucdavis.edu</a><br />
-<a
+>cswel@ucdavis.edu</a><br /><a
   title="Github"
   href="https://github.com/camillescott"
   target="_blank"
 >https://github.com/camillescott</a></p>
 <p><strong>Aknowledgements:</strong></p>
-<p>The time had come to face the fact that I was long overdue posting this template.</p>
-<blockquote class="twitter-tweet" data-lang="en">
-<p lang="en" dir="ltr">
-The time has come to face the fact that I must create a poster. It's been a while. What's the least painful way to do this these days?
-</p>
-— Kara Woo <a href="https://twitter.com/kara_woo/status/856644892319137792">April 24, 2017</a>
-</blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>Thanks to the DIB Lab.</p>
 </div>
-</div>
-</div>
-<div id="row-3" class="section level2" data-height="10">
-<h2>Row 3</h2>
-<div id="fig.-2-place-the-volcano-figure-where-you-please." class="section level3" data-width="50">
-<h3><strong>Fig. 2: Place the volcano figure where you please.</strong></h3>
-<p><img src="img/volcano-plot-1.png" style="height:100%"></img></p>
-</div>
-<div id="section-1" class="section level3 small" data-width="50">
+<div id="section-1" class="section level3">
 <h3></h3>
+<!-- {data-width=50 .small} -->
 <p><strong>References</strong></p>
-<div id="refs" class="references">
-<div id="ref-khmer">
-<p>Crusoe, MR, HF Alameldin, S Awad, E Boucher, A Caldwell, R Cartwright, A Charbonneau, et al. 2015. “The Khmer Software Package: Enabling Efficient Nucleotide Sequence Analysis Version 1; Referees: 2 Approved, 1 Approved with Reservations.” <em>F1000Research</em> 4 (900). doi:<a href="https://doi.org/10.12688/f1000research.6924.1">10.12688/f1000research.6924.1</a>.</p>
-</div>
+<div class="references">
+<p>Crusoe, MR, HF Alameldin, S Awad, E Boucher, A Caldwell, R Cartwright, A Charbonneau, et al. 2015. “The Khmer Software Package: Enabling Efficient Nucleotide Sequence Analysis Version 1; Referees: 2 Approved, 1 Approved with Reservations.” <em>F1000Research</em> 4 (900). doi:<a href="http://dx.doi.org/10.12688/f1000research.6924.1">10.12688/f1000research.6924.1</a>.</p>
 </div>
 </div>
 </div>
@@ -2762,7 +2759,7 @@ knitr::opts_chunk$set(
 
 
 
-## Row 1 {data-height=15}
+## Row 1 {data-height=20}
 
 ###
 
@@ -2773,7 +2770,7 @@ knitr::opts_chunk$set(
   **Characterizing RNA-seq assembly graphs: when is enough, enough?**
   </h3></center></td>
   <td rowspan="2">
-  <img src="img/logo.png" style="width:128px"></img>
+  <img src="img/inter-transcript-circular-repeat-logo.png" style="width:200px"></img>
   </td>
 </tr>
 <tr><td><center><a
@@ -2794,7 +2791,7 @@ result are studied in downstream analyses. However, less studied are features of
 
 
 
-## Row 2 {data-height=75}
+## Row 2 {data-height=45}
 
 ### **Methods**
 
@@ -2815,20 +2812,19 @@ Early work showed that assembly graphs from RNA-seq data tend to become dominate
 component, even when error trimming and adapter removal is performed. This component, which we call
 the "lump," is composed of low complexity sequence and high-degree nodes. 
 
-**Fig. 1: Even the wisest cannot tell. For the mirror… shows many things…**
-<img src="poster.png" alt="What will I see?" style="width:100%"></img>
+**Fig. 1: "Lump" formation as reads are added to the graph.**
+<img src="img/largest_component_size_paired_and_single.png" style="width:100%"></img>
 
+
+## Another Row {data-height=45}
+
+### With a Section
 
 #### Assembly Graphs Stabilize Early
 
 
 **Fig. 1: Stabilization of component number in a eukaryotic marine transcriptome**
 <img src="img/components_v_reads_paired_and_single.png" style="width:100%"></img>
-
-
-
-#### Component Coverage help minimize traversals
-
 
 
 ### **Discussion**
@@ -2850,6 +2846,7 @@ I prepared this *other* tool to... nah it still is missing things.
 **Fig. 3: Some authoritative content**
 <img src="img/standards.png" style="width:100%"></img>
 
+### And More?
 
 #### Limitations
 
@@ -2866,7 +2863,18 @@ the final rendered image
 
 <hr>
 
-#### Contact information
+
+
+## Row 3 {data-height=35} 
+
+### **Fig. 2: Place the volcano figure where you please.**  
+<!-- {data-width=50} -->
+
+<img src="img/volcano-plot-1.png" style="height:100%"></img>
+
+### Humans Were Involved
+
+**Contact**
 
 Camille Scott  
 <a
@@ -2880,25 +2888,13 @@ Camille Scott
   target="_blank"
 >https://github.com/camillescott</a>
 
-
-
 **Aknowledgements:** 
 
-The time had come to face the fact that I was long overdue posting this template.
-
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The time has come to face the fact that I must create a poster. It&#39;s been a while. What&#39;s the least painful way to do this these days?</p>&mdash; Kara Woo <a href="https://twitter.com/kara_woo/status/856644892319137792">April 24, 2017</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+Thanks to the DIB Lab.
 
 
-## Row 3 {data-height=10} 
-
-### **Fig. 2: Place the volcano figure where you please.** {data-width=50}
-
-<img src="img/volcano-plot-1.png" style="height:100%"></img>
-
-
-
-### {data-width=50 .small}
+### 
+<!-- {data-width=50 .small} -->
 
 **References**
 </code></pre>
