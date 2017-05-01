@@ -2,7 +2,7 @@
 output_file <- "flexdashboard-poster.html"
 width <- 1200
 poster_width <- 38 # inches
-res <- 300
+res <- 100
 
 # Render document
 rmarkdown::render(

@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 
 
 
-## Row 1 {data-height=15}
+## Row 1 {data-height=20}
 
 ###
 
@@ -38,7 +38,7 @@ knitr::opts_chunk$set(
   **Characterizing RNA-seq assembly graphs: when is enough, enough?**
   </h3></center></td>
   <td rowspan="2">
-  <img src="img/logo.png" style="width:128px"></img>
+  <img src="img/inter-transcript-circular-repeat-logo.png" style="width:200px"></img>
   </td>
 </tr>
 <tr><td><center><a
@@ -59,7 +59,7 @@ result are studied in downstream analyses. However, less studied are features of
 
 
 
-## Row 2 {data-height=75}
+## Row 2 {data-height=45}
 
 ### **Methods**
 
@@ -80,20 +80,19 @@ Early work showed that assembly graphs from RNA-seq data tend to become dominate
 component, even when error trimming and adapter removal is performed. This component, which we call
 the "lump," is composed of low complexity sequence and high-degree nodes. 
 
-**Fig. 1: Even the wisest cannot tell. For the mirror… shows many things…**
-<img src="poster.png" alt="What will I see?" style="width:100%"></img>
+**Fig. 1: "Lump" formation as reads are added to the graph.**
+<img src="img/largest_component_size_paired_and_single.png" style="width:100%"></img>
 
+
+## Another Row {data-height=45}
+
+### With a Section
 
 #### Assembly Graphs Stabilize Early
 
 
 **Fig. 1: Stabilization of component number in a eukaryotic marine transcriptome**
 <img src="img/components_v_reads_paired_and_single.png" style="width:100%"></img>
-
-
-
-#### Component Coverage help minimize traversals
-
 
 
 ### **Discussion**
@@ -115,6 +114,7 @@ I prepared this *other* tool to... nah it still is missing things.
 **Fig. 3: Some authoritative content**
 <img src="img/standards.png" style="width:100%"></img>
 
+### And More?
 
 #### Limitations
 
@@ -131,7 +131,18 @@ the final rendered image
 
 <hr>
 
-#### Contact information
+
+
+## Row 3 {data-height=35} 
+
+### **Fig. 2: Place the volcano figure where you please.**  
+<!-- {data-width=50} -->
+
+<img src="img/volcano-plot-1.png" style="height:100%"></img>
+
+### Humans Were Involved
+
+**Contact**
 
 Camille Scott  
 <a
@@ -145,24 +156,12 @@ Camille Scott
   target="_blank"
 >https://github.com/camillescott</a>
 
-
-
 **Aknowledgements:** 
 
-The time had come to face the fact that I was long overdue posting this template.
-
-<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The time has come to face the fact that I must create a poster. It&#39;s been a while. What&#39;s the least painful way to do this these days?</p>&mdash; Kara Woo <a href="https://twitter.com/kara_woo/status/856644892319137792">April 24, 2017</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+Thanks to the DIB Lab.
 
 
-## Row 3 {data-height=10} 
-
-### **Fig. 2: Place the volcano figure where you please.** {data-width=50}
-
-<img src="img/volcano-plot-1.png" style="height:100%"></img>
-
-
-
-### {data-width=50 .small}
+### 
+<!-- {data-width=50 .small} -->
 
 **References**
