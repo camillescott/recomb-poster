@@ -1,5 +1,5 @@
 ---
-title: "Characterizing RNA-seq assembly graphs: when is enough, enough?"
+title: "Assembly graphs, streaming partitioning, RNA-seq"
 output: 
   flexdashboard::flex_dashboard:
     self_contained: false
@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 
 
 
-## Row 1 {data-height=20}
+## Row 1 {data-height=25}
 
 ###
 
@@ -46,7 +46,7 @@ knitr::opts_chunk$set(
   href="mailto:cswel@ucdavis.edu?Subject=Poster%20subject"
   target="_top">
   Camille Scott
-  </a></center></td>
+  </a>and C. Titus Brown</center></td>
 </tr>
 </table> 
 
@@ -55,113 +55,106 @@ knitr::opts_chunk$set(
 **Background:** With sequencing experiments regularly reaching into the billions of fragments, 
 assembly graphs have become a core feature of most extant assemblers. Traversals of these 
 graphs yield images of the underlying sequence, and the assembled sequences that 
-result are studied in downstream analyses. However, less studied are features of the assembly graph itself. Motivated by the observation that assembly graphs succinctly encode a universe of possible assemblies, we explore some fundamental features of assembly graphs from RNA-seq. Our work is guided by the question: how much sequence is needed to build a reliable and useful image of the underlying transcripts? Using a large body of RNA-seq experiments available through the Marine Microbial Eukaryotic Sequencing Project (MMETSP), we describe transcriptome assembly graphs though their component size and coverage distributions, and harness this information to present a model for streaming transcriptome assembly graph partitioning. This work moves us toward our goal of producing a fully streaming transcriptome assembler.
-
-
+result are studied in downstream analyses. However, less studied are features of the assembly graph itself. Motivated by the observation that assembly graphs succinctly encode a universe of possible assemblies, we explore some fundamental features of assembly graphs from RNA-seq. Our work is guided by the question: how much sequence is needed to build a reliable and useful image of the underlying transcripts? Using a large body of RNA-seq experiments available through the Marine Microbial Eukaryotic Sequencing Project (MMETSP) and a streaming assembly graph partitioner, we describe transcriptome assembly graphs though their component size and coverage distributions.
 
 ## Row 2 {data-height=45}
 
 ### **Methods**
 
-#### Software
+#### Assembly Graph Construction
 
-These analyses are implemented in the `boink` package (https://github.com/camillescott/boink), which is
-built on the `khmer/oxli` package [@khmer] from the Lab for Data Intensive Biology
-(http://ivory.idyll.org/lab/) at UCD.
+We use a typical de Bruijn graph of order $k$ for our assembly graphs. The graph is succinctly encoded using
+either a bloom filter or Count-min sketch as implemented in the khmer package [@khmer], depending on whether
+$k$-mer presence only or $k$-mer counting is desired. As reads are parsed from a sample, they are broken down
+into $k$-mers and inserted into the filter; we also keep an auxillary sparse map of $k$-mers at maximum distance
+$d=(k*2)-1$ to act as indices into the graph, which we refer to as tags.
 
 #### Streaming Partitioning
 
+Components are tracked online using a streaming partitioning algorithm. Briefly, when a read with $k$-mers $R$ is inserted in the graph $G$, the tags
+it intersects and any newly created tags are gathered in a set $T$. A (user-selectable) partitioning function 
+$F(T, G) \rightarrow \mathbb{R}$ scores the insert, triggering partitioning if the score exceeds a threshold. The tags
+are partitioned (ie, assigned to a component) by breadth-first search, starting from those $k$-mers in $R$ from which there is no path through $R\cap G$ to an already-partitioned tag, and ending when all nearest tags in $G/R$ have been found. All components associated with that set are then merged into its largest component.
 
-### **Results**
-
-#### RNA-seq assembly graphs are dominated by a highly connected component
+### **Graph Artifacts**
 
 Early work showed that assembly graphs from RNA-seq data tend to become dominated by one highly connected
 component, even when error trimming and adapter removal is performed. This component, which we call
-the "lump," is composed of low complexity sequence and high-degree nodes. 
+the "lump," is composed of low complexity sequence and high-degree nodes.
 
 **Fig. 1: "Lump" formation as reads are added to the graph.**
-<img src="img/largest_component_size_paired_and_single.png" style="width:100%"></img>
+<center><img src="img/lump_domination.png" style="width:90%"></img></center>
 
 
-## Another Row {data-height=45}
+## Another Row {data-height=50}
 
-### With a Section
+### Component Size and Coverage Dynamics
 
-#### Assembly Graphs Stabilize Early
+**Fig. 2: Quantiles of component coverage and size as reads are inserted.**
+<img src="img/component_quantiles.png" style="width:100%"></img>
 
+Here, our partitioning function favors mean tags counts between 5 and 10. The bottom decile is thus dominated by
+low-coverage, small components. Coverage in higher quantiles grows slowly, after an initial peak: the highest-coverage
+graph regions, comprising mostly low-complexity sequence and high-degree nodes, are consumed by the lump. Note the
+relatively linear growth of the largest components, compared to the stability of the smaller ones.
 
-**Fig. 1: Stabilization of component number in a eukaryotic marine transcriptome**
-<img src="img/components_v_reads_paired_and_single.png" style="width:100%"></img>
-
+Samples for both figures taken from the MMETSP project [@plos_mmetsp, @Cohen2017], SRR1300451.
 
 ### **Discussion**
 
+##### On RNA-seq Assembly Graphs
 
-```{r new-standard}
-# Get reference image
-download.file(
-  "https://imgs.xkcd.com/comics/standards.png", mode = "wb",
-  destfile = "../output/img/standards.png"
-)
-```
+How to approach the connectivity problem is an ongoing challenge faced by practitioners using assembly graphs.
+Traditional methods tend to break up the graph at chains of high-degree nodes, or more recently, use
+community-detection algorithms [@Kannan]. An improved solution might prevent the lump from forming in the first place
+by biasing assembly graph contruction.
 
+These results confirm that the basic structure of the assembly graph is sketched out by only a small subset
+of a sample; by the time the graph has filled out enough to resemble its final component structure, coverage
+reaches relatively stable growth, which suggests that coverage information can be estimated early on in a streaming
+capacity as well.
 
-Since there are so many tools that can be used to prepare posters,
-and not a single one satisfies my needs,
-I prepared this *other* tool to... nah it still is missing things.
+##### On the Methods
 
-**Fig. 3: Some authoritative content**
-<img src="img/standards.png" style="width:100%"></img>
+Current work is progressing toward better partition scoring by harnessing the detailed  information on local
+and global component-wise coverage that we gather. The current streaming partitioning implementation is both
+information-rich and fast, currently exceeding the speed of a decent network connection. Streaming
+partitioning (and by extension, assembly) could operate as a filter for receiving sequence data,
+delivery components (or transcripts) as they become available, or acting as a persistent service for applications
+like resequencing experiments.
 
-### And More?
+## Row 3 {data-height=30}
 
-#### Limitations
-
-Since the png file is generated as a snapshot of the html poster,
-several limitations should be considered:
-
-- Resolution is very limited by the resources in your system
-- Larger formats require much more resources to render
-- Complex posters can take longer to load, so you have to try different delays
-- The preview shown in `poster/poster_frame.html` could be very different to
-the final rendered image
-- "I can't fit enough text/figures!"  
-  ↑ that one's on you, nobody likes a crammed poster
-
-<hr>
-
-
-
-## Row 3 {data-height=35} 
-
-### **Fig. 2: Place the volcano figure where you please.**  
+<!-- ### **Fig. 2: Place the volcano figure where you please.**   -->
 <!-- {data-width=50} -->
 
-<img src="img/volcano-plot-1.png" style="height:100%"></img>
+<!-- <img src="img/volcano-plot-1.png" style="height:100%"></img> -->
 
-### Humans Were Involved
+### **Humans Were Involved** {data-width=300}
 
 **Contact**
 
-Camille Scott  
-<a
+- Camille Scott <br>
+  *University of California Davis*
+- <a
   title="University of California Davis"
   href="mailto:cswel@ucdavis.edu"
   target="_top"
 >cswel@ucdavis.edu</a>  
-<a
+- <a
   title="Github"
   href="https://github.com/camillescott"
   target="_blank"
 >https://github.com/camillescott</a>
 
-**Aknowledgements:** 
-
 Thanks to the DIB Lab.
 
+**And Software**
 
-### 
-<!-- {data-width=50 .small} -->
+These analyses are implemented in the `boink` package (https://github.com/camillescott/boink), which is
+built on the `khmer/oxli` package from the Lab for Data Intensive Biology
+(http://ivory.idyll.org/lab/) at UCD.
 
-**References**
+
+### {.small}
+**References** 

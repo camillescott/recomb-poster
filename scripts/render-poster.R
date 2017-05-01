@@ -20,4 +20,12 @@ webshot::webshot(
   zoom = poster_width / (width / res)        # Adjust elements relative size
 )
 
+webshot::webshot(
+  url = paste0("output/", output_file),
+  file = "output/poster.pdf",
+  vwidth = width,
+  vheight = floor(width * sqrt(2)),          # Use A series aspect ratio
+  delay = 1,                                 # Wait to allow all element to load
+  zoom = poster_width / (width / res)        # Adjust elements relative size
+)
 # End of script
