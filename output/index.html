@@ -2637,11 +2637,11 @@ body {
 <h3><strong>Methods</strong></h3>
 <div id="assembly-graph-construction" class="section level4">
 <h4>Assembly Graph Construction</h4>
-<p>We use a typical de Bruijn graph of order <span class="math">\(k\)</span> for our assembly graphs. The graph is succinctly encoded using either a bloom filter or Count-min sketch as implemented in the khmer package <span class="citation">(Crusoe et al. 2015)</span>, depending on whether <span class="math">\(k\)</span>-mer presence only or <span class="math">\(k\)</span>-mer counting is desired. As reads are parsed from a sample, they are broken down into <span class="math">\(k\)</span>-mers and inserted into the filter; we also keep an auxillary sparse map of <span class="math">\(k\)</span>-mers at maximum distance <span class="math">\(d=(k*2)-1\)</span> to act as indices into the graph, which we refer to as tags.</p>
+<p>We use a typical de Bruijn graph of order <span class="math inline">\(k\)</span> for our assembly graphs. The graph is succinctly encoded using either a bloom filter or Count-min sketch as implemented in the khmer package <span class="citation">(Crusoe et al. 2015)</span>, depending on whether <span class="math inline">\(k\)</span>-mer presence only or <span class="math inline">\(k\)</span>-mer counting is desired. As reads are parsed from a sample, they are broken down into <span class="math inline">\(k\)</span>-mers and inserted into the filter; we also keep an auxillary sparse map of <span class="math inline">\(k\)</span>-mers at maximum distance <span class="math inline">\(d=(k*2)-1\)</span> to act as indices into the graph, which we refer to as tags.</p>
 </div>
 <div id="streaming-partitioning" class="section level4">
 <h4>Streaming Partitioning</h4>
-<p>Components are tracked online using a streaming partitioning algorithm. Briefly, when a read with <span class="math">\(k\)</span>-mers <span class="math">\(R\)</span> is inserted in the graph <span class="math">\(G\)</span>, the tags it intersects and any newly created tags are gathered in a set <span class="math">\(T\)</span>. A (user-selectable) partitioning function <span class="math">\(F(T, G) \rightarrow \mathbb{R}\)</span> scores the insert, triggering partitioning if the score exceeds a threshold. The tags are partitioned (ie, assigned to a component) by breadth-first search, starting from those <span class="math">\(k\)</span>-mers in <span class="math">\(R\)</span> from which there is no path through <span class="math">\(R\cap G\)</span> to an already-partitioned tag, and ending when all nearest tags in <span class="math">\(G/R\)</span> have been found. All components associated with that set are then merged into its largest component.</p>
+<p>Components are tracked online using a streaming partitioning algorithm. Briefly, when a read with <span class="math inline">\(k\)</span>-mers <span class="math inline">\(R\)</span> is inserted in the graph <span class="math inline">\(G\)</span>, the tags it intersects and any newly created tags are gathered in a set <span class="math inline">\(T\)</span>. A (user-selectable) partitioning function <span class="math inline">\(F(T, G) \rightarrow \mathbb{R}\)</span> scores the insert, triggering partitioning if the score exceeds a threshold. The tags are partitioned (ie, assigned to a component) by breadth-first search, starting from those <span class="math inline">\(k\)</span>-mers in <span class="math inline">\(R\)</span> from which there is no path through <span class="math inline">\(R\cap G\)</span> to an already-partitioned tag, and ending when all nearest tags in <span class="math inline">\(G/R\)</span> have been found. All components associated with that set are then merged into its largest component.</p>
 </div>
 </div>
 <div id="graph-artifacts" class="section level3">
@@ -2670,7 +2670,7 @@ body {
 </div>
 <div id="on-the-methods" class="section level5">
 <h5>On the Methods</h5>
-<p>Current work is progressing toward better partition scoring by harnessing the detailed information on local and global component-wise coverage that we gather. The current streaming partitioning implementation is both information-rich and fast, exceeding the speed of a decent network connection. Streaming partitioning (and by extension, assembly) could operate as a filter for receiving sequence data, delivery components (or transcripts) as they become available, or acting as a persistent service for applications like resequencing experiments.</p>
+<p>Current work is progressing toward better partition scoring by harnessing the detailed information on local and global component-wise coverage that we gather. The current streaming partitioning implementation is both information-rich and fast, exceeding the speed of a decent network connection. Streaming partitioning (and by extension, assembly) could operate as a filter for receiving sequence data, delivering components (or transcripts) as they become available, or acting as a persistent service for applications like resequencing experiments.</p>
 </div>
 </div>
 </div>
@@ -2685,7 +2685,8 @@ body {
   title="University of California Davis"
   href="mailto:cswel@ucdavis.edu"
   target="_top"
->cswel@ucdavis.edu</a><br /></li>
+>cswel@ucdavis.edu</a><br />
+</li>
 <li><a
   title="Github"
   href="https://github.com/camillescott"
@@ -2699,11 +2700,19 @@ body {
 <div id="section-1" class="section level3 small">
 <h3></h3>
 <p><strong>References</strong></p>
-<div class="references">
-<p>Cohen, Lisa, Harriet Alexander, and C. Titus Brown. 2017. “Marine Microbial Eukaryotic Transcriptome Sequencing Project, re-assemblies,” January. doi:<a href="http://dx.doi.org/10.6084/m9.figshare.3840153.v6">10.6084/m9.figshare.3840153.v6</a>.</p>
-<p>Crusoe, MR, HF Alameldin, S Awad, E Boucher, A Caldwell, R Cartwright, A Charbonneau, et al. 2015. “The Khmer Software Package: Enabling Efficient Nucleotide Sequence Analysis Version 1; Referees: 2 Approved, 1 Approved with Reservations.” <em>F1000Research</em> 4 (900). doi:<a href="http://dx.doi.org/10.12688/f1000research.6924.1">10.12688/f1000research.6924.1</a>.</p>
-<p>Kannan, Sreeram, Joseph Hui, Kayvon Mazooji, Lior Pachter, and David Tse. 2016. “Shannon: An Information-Optimal de Novo RNA-Seq Assembler.” <em>BioRxiv</em>. Cold Spring Harbor Labs Journals. doi:<a href="http://dx.doi.org/10.1101/039230">10.1101/039230</a>.</p>
-<p>Keeling, Fabien AND Wilcox, Patrick J. AND Burki. 2014. “The Marine Microbial Eukaryote Transcriptome Sequencing Project (MMETSP): Illuminating the Functional Diversity of Eukaryotic Life in the Oceans Through Transcriptome Sequencing.” <em>PLOS Biology</em> 12 (6). Public Library of Science: 1–6. doi:<a href="http://dx.doi.org/10.1371/journal.pbio.1001889">10.1371/journal.pbio.1001889</a>.</p>
+<div id="refs" class="references">
+<div id="ref-Cohen2017">
+<p>Cohen, Lisa, Harriet Alexander, and C. Titus Brown. 2017. “Marine Microbial Eukaryotic Transcriptome Sequencing Project, re-assemblies,” January. doi:<a href="https://doi.org/10.6084/m9.figshare.3840153.v6">10.6084/m9.figshare.3840153.v6</a>.</p>
+</div>
+<div id="ref-khmer">
+<p>Crusoe, MR, HF Alameldin, S Awad, E Boucher, A Caldwell, R Cartwright, A Charbonneau, et al. 2015. “The Khmer Software Package: Enabling Efficient Nucleotide Sequence Analysis Version 1; Referees: 2 Approved, 1 Approved with Reservations.” <em>F1000Research</em> 4 (900). doi:<a href="https://doi.org/10.12688/f1000research.6924.1">10.12688/f1000research.6924.1</a>.</p>
+</div>
+<div id="ref-Kannan">
+<p>Kannan, Sreeram, Joseph Hui, Kayvon Mazooji, Lior Pachter, and David Tse. 2016. “Shannon: An Information-Optimal de Novo Rna-Seq Assembler.” <em>BioRxiv</em>. Cold Spring Harbor Labs Journals. doi:<a href="https://doi.org/10.1101/039230">10.1101/039230</a>.</p>
+</div>
+<div id="ref-plos_mmetsp">
+<p>Keeling, Fabien AND Wilcox, Patrick J. AND Burki. 2014. “The Marine Microbial Eukaryote Transcriptome Sequencing Project (Mmetsp): Illuminating the Functional Diversity of Eukaryotic Life in the Oceans Through Transcriptome Sequencing.” <em>PLOS Biology</em> 12 (6). Public Library of Science: 1–6. doi:<a href="https://doi.org/10.1371/journal.pbio.1001889">10.1371/journal.pbio.1001889</a>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -2729,12 +2738,13 @@ $(document).ready(function () {
 <div id="flexdashboard-source-code">
 <pre class="line-numbers"><code class="language-r">---
 title: "Assembly graphs, streaming partitioning, RNA-seq"
-output: 
+geometry: -paperwidth=36in -paperheight=48in
+output:
   flexdashboard::flex_dashboard:
-    self_contained: false
     orientation: rows
-    source: embed
+    self_contained: no
     social: menu
+    source: embed
 bibliography: ../references/references.bib
 ---
 <style type="text/css">
@@ -2743,6 +2753,7 @@ body {
    font-size: 13px;
 }
 </style>
+
 
 ```{r setup, include=FALSE}
 library("flexdashboard")
@@ -2851,7 +2862,7 @@ Current work is progressing toward better partition scoring by harnessing the de
 and global component-wise coverage that we gather. The current streaming partitioning implementation is both
 information-rich and fast, exceeding the speed of a decent network connection. Streaming
 partitioning (and by extension, assembly) could operate as a filter for receiving sequence data,
-delivery components (or transcripts) as they become available, or acting as a persistent service for applications
+delivering components (or transcripts) as they become available, or acting as a persistent service for applications
 like resequencing experiments.
 
 ## Row 3 {data-height=30}
@@ -2884,7 +2895,8 @@ built on the `khmer/oxli` package from the Lab for Data Intensive Biology
 
 
 ### {.small}
-**References** 
+
+**References**
 </code></pre>
 </div>
 <script type="text/javascript">
