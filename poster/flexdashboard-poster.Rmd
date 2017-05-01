@@ -1,0 +1,168 @@
+---
+title: "Characterizing RNA-seq assembly graphs: when is enough, enough?"
+output: 
+  flexdashboard::flex_dashboard:
+    self_contained: false
+    orientation: rows
+    source: embed
+    social: menu
+bibliography: ../references/references.bib
+---
+
+
+```{r setup, include=FALSE}
+library("flexdashboard")
+library("tidyverse")
+
+# Setup knitr
+knitr::opts_chunk$set(
+  echo = FALSE, message = FALSE, warning = FALSE,
+  # Save all figures in the output dir, you have to include them explicitly
+  # with an <img> tag
+  fig.path = "../output/img/", fig.show = "hide"
+)
+```
+
+
+
+
+
+## Row 1 {data-height=15}
+
+###
+
+
+<table style="width:100%">
+<tr>
+  <td><center><h3>
+  **Characterizing RNA-seq assembly graphs: when is enough, enough?**
+  </h3></center></td>
+  <td rowspan="2">
+  <img src="img/logo.png" style="width:128px"></img>
+  </td>
+</tr>
+<tr><td><center><a
+  title="University of California Davis"
+  href="mailto:cswel@ucdavis.edu?Subject=Poster%20subject"
+  target="_top">
+  Camille Scott
+  </a></center></td>
+</tr>
+</table> 
+
+<hr>
+
+**Background:** With sequencing experiments regularly reaching into the billions of fragments, 
+assembly graphs have become a core feature of most extant assemblers. Traversals of these 
+graphs yield images of the underlying sequence, and the assembled sequences that 
+result are studied in downstream analyses. However, less studied are features of the assembly graph itself. Motivated by the observation that assembly graphs succinctly encode a universe of possible assemblies, we explore some fundamental features of assembly graphs from RNA-seq. Our work is guided by the question: how much sequence is needed to build a reliable and useful image of the underlying transcripts? Using a large body of RNA-seq experiments available through the Marine Microbial Eukaryotic Sequencing Project (MMETSP), we describe transcriptome assembly graphs though their component size and coverage distributions, and harness this information to present a model for streaming transcriptome assembly graph partitioning. This work moves us toward our goal of producing a fully streaming transcriptome assembler.
+
+
+
+## Row 2 {data-height=75}
+
+### **Methods**
+
+#### Software
+
+These analyses are implemented in the `boink` package (https://github.com/camillescott/boink), which is
+built on the `khmer/oxli` package [@khmer] from the Lab for Data Intensive Biology
+(http://ivory.idyll.org/lab/) at UCD.
+
+#### Streaming Partitioning
+
+
+### **Results**
+
+#### RNA-seq assembly graphs are dominated by a highly connected component
+
+Early work showed that assembly graphs from RNA-seq data tend to become dominated by one highly connected
+component, even when error trimming and adapter removal is performed. This component, which we call
+the "lump," is composed of low complexity sequence and high-degree nodes. 
+
+**Fig. 1: Even the wisest cannot tell. For the mirror… shows many things…**
+<img src="poster.png" alt="What will I see?" style="width:100%"></img>
+
+
+#### Assembly Graphs Stabilize Early
+
+
+**Fig. 1: Stabilization of component number in a eukaryotic marine transcriptome**
+<img src="img/components_v_reads_paired_and_single.png" style="width:100%"></img>
+
+
+
+#### Component Coverage help minimize traversals
+
+
+
+### **Discussion**
+
+
+```{r new-standard}
+# Get reference image
+download.file(
+  "https://imgs.xkcd.com/comics/standards.png", mode = "wb",
+  destfile = "../output/img/standards.png"
+)
+```
+
+
+Since there are so many tools that can be used to prepare posters,
+and not a single one satisfies my needs,
+I prepared this *other* tool to... nah it still is missing things.
+
+**Fig. 3: Some authoritative content**
+<img src="img/standards.png" style="width:100%"></img>
+
+
+#### Limitations
+
+Since the png file is generated as a snapshot of the html poster,
+several limitations should be considered:
+
+- Resolution is very limited by the resources in your system
+- Larger formats require much more resources to render
+- Complex posters can take longer to load, so you have to try different delays
+- The preview shown in `poster/poster_frame.html` could be very different to
+the final rendered image
+- "I can't fit enough text/figures!"  
+  ↑ that one's on you, nobody likes a crammed poster
+
+<hr>
+
+#### Contact information
+
+Camille Scott  
+<a
+  title="University of California Davis"
+  href="mailto:cswel@ucdavis.edu"
+  target="_top"
+>cswel@ucdavis.edu</a>  
+<a
+  title="Github"
+  href="https://github.com/camillescott"
+  target="_blank"
+>https://github.com/camillescott</a>
+
+
+
+**Aknowledgements:** 
+
+The time had come to face the fact that I was long overdue posting this template.
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The time has come to face the fact that I must create a poster. It&#39;s been a while. What&#39;s the least painful way to do this these days?</p>&mdash; Kara Woo <a href="https://twitter.com/kara_woo/status/856644892319137792">April 24, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+## Row 3 {data-height=10} 
+
+### **Fig. 2: Place the volcano figure where you please.** {data-width=50}
+
+<img src="img/volcano-plot-1.png" style="height:100%"></img>
+
+
+
+### {data-width=50 .small}
+
+**References**
