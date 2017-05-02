@@ -5,7 +5,7 @@ output:
     self_contained: false
     orientation: rows
     source: embed
-    social: menu
+    theme: simplex
 bibliography: ../references/references.bib
 ---
 
@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 
 
 
-## Row 1 {data-height=25}
+## Row 1 {data-height=20}
 
 ###
 
@@ -153,7 +153,7 @@ Thanks to the DIB Lab.
 
 These analyses are implemented in the `boink` package (https://github.com/camillescott/boink), which is
 built on the `khmer/oxli` package from the Lab for Data Intensive Biology
-(http://ivory.idyll.org/lab/) at UCD.
+(http://ivory.idyll.org/lab/) at UCD. The poster was created with https://github.com/odeleongt/flexdashboard-poster.
 
 
 ### {.small}

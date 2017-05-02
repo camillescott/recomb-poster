@@ -14,7 +14,7 @@ rmarkdown::render(
 # Render preview
 webshot::webshot(
   url = paste0("output/", output_file),
-  file = c("output/poster.jpeg"),
+  file = c("output/poster.jpeg", "output/poster.png"),
   vwidth = width,
 #  vheight = floor(width * sqrt(2)),          # Use A series aspect ratio
   vheight = height,
